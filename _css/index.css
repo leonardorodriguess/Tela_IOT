@@ -1,0 +1,56 @@
+#List label{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 24px;
+}
+
+#List select{
+    background-color: #FFF;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.08);
+    width: 30%;
+    font-display: center;
+    border: none;
+    font-size: 30px;
+    padding: 24px;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: "Verdana", sans-serif;
+    color: green;
+}
+
+#List select option{
+    font-display: center;
+    text-align: center;
+    color: green;
+    font-family: "Verdana", sans-serif;
+    font-size: 30px;
+}
+
+.botao{
+    text-align: right;
+    padding: 32px 256px;
+}
+
+#Corrente_graf{
+    display: none;
+}
+
+#Tensao_graf{
+    display: none;
+}
+
+#Fp_graf{
+    display: none;
+}
+
+#Ativa_graf{
+    display: none;
+}
+
+#Reativa_graf{
+    display: none;
+}
+
+#Aparente_graf{
+    display: none;
+} 

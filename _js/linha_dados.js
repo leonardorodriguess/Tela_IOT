@@ -1,3 +1,4 @@
+//Exibição do grafico
 
 function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], type = "line")
 {
@@ -89,11 +90,10 @@ function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], t
 
 function pad_exib_graf(titulo)
 {
+  //Gera parte do html para criação do gráfico de modo genérico
   titulo , element = carceter_especial(titulo)
-  //document.querySelector('#Corrente_graf')
   document.querySelector('#'+element + '_graf')
     .innerHTML = '<div class="container">' +
-                 '<h2>'+ titulo +'</h2> ' +
                  '<div>'+ 
                  '<canvas id="'+ element +'"></canvas>' +
                  ' </div>' +
@@ -101,6 +101,7 @@ function pad_exib_graf(titulo)
 }
 
 function carceter_especial(titulo){
+  //separa trata caso rebeba o valor com caractere especial
   element = titulo;
   if (element == 'Tensão')
     element = 'Tensao'
