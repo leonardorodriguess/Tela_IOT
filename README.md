@@ -4,5 +4,5 @@
 
 <h3> Descrição </h3>
 
-Exibição gráfica dos dados gerados pelo IOT no banco de dados, em um determinado período de tempo.
+Interface gráfica dos dados coletados pelo IOT de energia solar, por determinados período de tempo de acordo com os parâmetros passado pelo usuário, para o monitoramento de consumo de energia consumida e gerada.
 
