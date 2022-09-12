@@ -4,6 +4,19 @@ function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], t
 {
   titulo, element =  (carceter_especial(titulo));
   pad_exib_graf(titulo);
+  let cor = [];
+  if(type == "line"){
+    cor[0] = "rgba(153,205,1,0.0)";
+    cor[1] = "rgba(155,153,10,0.0)";
+    cor[2] = "rgba(155,103,10,0.0)";
+    hidden = false;
+  }
+  if(type == "bar"){
+    cor[0] = "rgba(153,205,1,1.0)";
+    cor[1] = "rgba(155,153,10,1.0)";
+    cor[2] = "rgba(155,103,10,1.0)";
+    hidden = true;
+  }
 
   var ctx = document.getElementById(element);
 
@@ -15,22 +28,22 @@ function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], t
         {
           label: titulo + " 01",
           data: coluna1,
-          backgroundColor: "rgba(153,205,1,0.0)",
+          backgroundColor: cor[0],
           borderColor: "rgba(153,205,1,0.6)",
         },
         {
           label: titulo + " 02",
           data: coluna2,
-          backgroundColor: "rgba(155,153,10,0.0)",
+          backgroundColor: cor[1],
           borderColor: "rgba(155,153,10,0.6)",
-          //hidden: true
+          hidden
         },
         {
           label: titulo + " 03",
           data: coluna3,
-          backgroundColor: "rgba(155,103,10,0.0)",
+          backgroundColor: cor[2],
           borderColor: "rgba(155,103,10,0.6)",
-          //hidden: true
+          hidden
         }
       ],
     },

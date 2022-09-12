@@ -21,9 +21,9 @@
     <div> 
       <h3>Período<h3>
       <div>
-          <form method="post" action = #>
-            Data início <input type="text" id="calendario_ini" name=ini class="calendario" value= "<?=$_POST["ini"]?>"/>
-            Data fim <input type="text" id="calendario_fim" name=fim class="calendario" value= "<?=$_POST["fim"]?>"/>
+          <form method="POST" action=#>
+            Data início <input type="text" id="calendario_ini" name="ini" class="calendario" required="true" value= "<?= (isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y')); ?>"  />
+            Data fim <input type="text" id="calendario_fim" name="fim" class="calendario" required="true" value= "<?=(isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y'));?>"/>
             <button type="submit">Enviar</button>
           </form> 
       </div>
@@ -45,7 +45,7 @@
       
       <div id="Corrente_graf" class="corrente box">
         
-        <?php $json = cons_padrao('corrente', $_POST["ini"], $_POST["fim"]) ?>
+        <?php $json = cons_padrao('corrente', isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y'), isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y')) ?>
         
         <script>       
           var json = JSON.parse('<?=$json?>')
@@ -58,7 +58,7 @@
 
       <div id="Tensao_graf" class="tensao box">
 
-        <?php $json = cons_padrao('tensao', $_POST["ini"], $_POST["fim"]) ?>
+        <?php $json = cons_padrao('tensao', isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y'), isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y')) ?>
 
         <script>         
           var json = JSON.parse('<?=$json?>')
@@ -69,7 +69,7 @@
 
       <div id="Fp_graf" class="fp box">
         
-        <?php $json = cons_padrao('fp', $_POST["ini"], $_POST["fim"]) ?>
+        <?php $json = cons_padrao('fp', isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y'), isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y')) ?>
         
         <script>       
           var json = JSON.parse('<?=$json?>')
@@ -80,42 +80,45 @@
 
       <div id="Ativa_graf" class="ativa box">
 
-        <?php $json = cons_padrao('ativa', $_POST["ini"], $_POST["fim"]) ?>
+        <?php $json = cons_padrao('ativa', isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y'), isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y')) ?>
         
         <script>       
           var json = JSON.parse('<?=$json?>')
-          dados_linha("Ativa", json['tempo'], json['coluna1'], json['coluna2'], json['coluna3'])
-          console.log(integral(json.coluna1, json.tempo))
+          graf = periodo(json)
+          console.log("json ", graf)
+          dados_linha("Ativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2])
+          console.log("ativa: " + integral( json.coluna1, json.tempo))
         </script>
 
       </div>
 
       <div id="Reativa_graf" class="reativa box">
 
-        <?php $json = cons_padrao('reativa', $_POST["ini"], $_POST["fim"]) ?>
+        <?php $json = cons_padrao('reativa', isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y'), isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y')) ?>
         
         <script>       
           var json = JSON.parse('<?=$json?>')
-          dados_linha("Reativa", json['tempo'], json['coluna1'], json['coluna2'], json['coluna3'])
-          console.log(integral(json.coluna1, json.tempo))
+          graf = periodo(json)
+          console.log("json ", graf)
+          dados_linha("Reativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2])
+          console.log("reativa: " + integral(json.coluna1, json.tempo))
         </script>
 
       </div>
 
       <div id="Aparente_graf" class="aparente box">
 
-        <?php $json = cons_padrao('aparente', $_POST["ini"], $_POST["fim"]) ?>
+        <?php $json = cons_padrao('aparente', isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y'), isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y')) ?>
         
         <script>       
           var json = JSON.parse('<?=$json?>')
-          dados_linha("Aparente", json['tempo'], json['coluna1'], json['coluna2'], json['coluna3'])
-          console.log(integral(json.coluna1, json.tempo))
+          graf = periodo(json)
+          console.log("json ", graf)
+          dados_linha("Aparente", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2])
+          console.log("aparente: " + integral(json.coluna1, json.tempo))
         </script>
 
       </div>
-      <form action="potencia.php" class="botao">
-          <button type="submit">Potência</button>
-      </form>
     </div>
   </body>
 </html>
