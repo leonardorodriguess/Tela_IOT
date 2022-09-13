@@ -1,9 +1,9 @@
 //Exibição do grafico
 
-function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], type = "line")
+function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], type = "line", total)
 {
   titulo, element =  (carceter_especial(titulo));
-  pad_exib_graf(titulo);
+  pad_exib_graf(titulo, total);
   let cor = [];
   if(type == "line"){
     cor[0] = "rgba(153,205,1,0.0)";
@@ -101,12 +101,18 @@ function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], t
   });
 }
 
-function pad_exib_graf(titulo)
+function pad_exib_graf(titulo, total = "")
 {
+  if(titulo == "Ativa" || titulo == "Reativa" || titulo == "Aparente")
+    total = '<p class="total_graf">'+ total +'</p> '
+  else
+    total = ''
+
   //Gera parte do html para criação do gráfico de modo genérico
   titulo , element = carceter_especial(titulo)
   document.querySelector('#'+element + '_graf')
     .innerHTML = '<div class="container">' +
+                  total +
                  '<div>'+ 
                  '<canvas id="'+ element +'"></canvas>' +
                  ' </div>' +

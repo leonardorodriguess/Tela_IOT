@@ -18,16 +18,6 @@
       
   </head>
   <body>
-    <div> 
-      <h3>Período<h3>
-      <div>
-          <form method="POST" action=#>
-            Data início <input type="text" id="calendario_ini" name="ini" class="calendario" required="true" value= "<?= (isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y')); ?>"  />
-            Data fim <input type="text" id="calendario_fim" name="fim" class="calendario" required="true" value= "<?=(isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y'));?>"/>
-            <button type="submit">Enviar</button>
-          </form> 
-      </div>
-    </div>
     <div>  
       <?php include('listar.php'); ?> 
       
@@ -41,6 +31,16 @@
           <option value="aparente"> Potência Aparente </option>
         </select>
         
+      </div>
+      <div> 
+        <h3 id="periodo">Período</h3>
+        <div id="form_periodo">
+            <form method="POST" action=#>
+              Data início: <input type="text" id="calendario_ini" name="ini" class="calendario" required="true" value= "<?= (isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y')); ?>"  />
+              Data fim: <input type="text" id="calendario_fim" name="fim" class="calendario" required="true" value= "<?=(isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y'));?>"/>
+              <button type="submit">Enviar</button>
+            </form> 
+        </div>
       </div>
       
       <div id="Corrente_graf" class="corrente box">
@@ -82,13 +82,15 @@
 
         <?php $json = cons_padrao('ativa', isset($_POST["ini"]) ? $_POST["ini"] : date('d/m/Y'), isset($_POST["fim"]) ? $_POST["fim"] : date('d/m/Y')) ?>
         
+        
         <script>       
           var json = JSON.parse('<?=$json?>')
+          //total = "Total: " + integral( json.coluna1, json.tempo).toFixed(2) + " UND"
           graf = periodo(json)
-          console.log("json ", graf)
-          dados_linha("Ativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2])
-          console.log("ativa: " + integral( json.coluna1, json.tempo))
-        </script>
+          console.log(graf)
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " UND";
+          dados_linha("Ativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
+          </script>
 
       </div>
 
@@ -99,9 +101,9 @@
         <script>       
           var json = JSON.parse('<?=$json?>')
           graf = periodo(json)
-          console.log("json ", graf)
-          dados_linha("Reativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2])
-          console.log("reativa: " + integral(json.coluna1, json.tempo))
+          console.log(graf)
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " UND";
+          dados_linha("Reativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
         </script>
 
       </div>
@@ -113,9 +115,9 @@
         <script>       
           var json = JSON.parse('<?=$json?>')
           graf = periodo(json)
-          console.log("json ", graf)
-          dados_linha("Aparente", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2])
-          console.log("aparente: " + integral(json.coluna1, json.tempo))
+          console.log(graf)
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " UND";
+          dados_linha("Aparente", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
         </script>
 
       </div>

@@ -35,14 +35,26 @@ function periodo(obj){
     
     dia[0] = 0;
 
-    if(temp > 1 && temp <= 31){
+    if(temp > 1){
         for(let i = 0; i < obj.tempo.length; i++){
 
             ini = new Date(obj.tempo[dia[k]])
             fim = new Date(obj.tempo[i])
-            //console.log(parseFloat(obj.coluna1[i]))
             
-            if(Math.abs(ini.getDate() - fim.getDate()) != 0){
+            //filtrar de acordo com o perído de tempo
+            if(temp <= 31){
+                ini = ini.getDate()
+                fim = fim.getDate()
+            }else if (temp <= 366){
+                ini = ini.getMonth();
+                fim = fim.getMonth();
+            }else{
+                ini = ini.getFullYear();
+                fim = fim.getFullYear();
+            }
+
+            //agrupar de acordo com o periodo
+            if(Math.abs(ini - fim) != 0){
                 area[k] = integral(coluna[k], tempo[k])
                 t[k] = tempo[k][0];
 
@@ -59,9 +71,6 @@ function periodo(obj){
         t[k] = tempo[k][dia[0]];
         area[k] = integral(coluna[k], tempo[k])
         
-        console.log(obj.coluna1)
-        console.log("Coluna ", coluna)
-        console.log(area, t) 
 
         return [area, t, 'bar'];
     }
