@@ -88,7 +88,7 @@
           //total = "Total: " + integral( json.coluna1, json.tempo).toFixed(2) + " UND"
           graf = periodo(json)
           console.log(graf)
-          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " UND";
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kW/h";
           dados_linha("Ativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
           </script>
 
@@ -102,7 +102,7 @@
           var json = JSON.parse('<?=$json?>')
           graf = periodo(json)
           console.log(graf)
-          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " UND";
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kW/h";
           dados_linha("Reativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
         </script>
 
@@ -116,7 +116,7 @@
           var json = JSON.parse('<?=$json?>')
           graf = periodo(json)
           console.log(graf)
-          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " UND";
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kW/h";
           dados_linha("Aparente", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
         </script>
 
