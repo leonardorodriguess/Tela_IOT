@@ -1,4 +1,5 @@
 //Exibição do grafico
+//import 'chartjs-adapter-date-fns';
 
 function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], type = "line", total)
 {
@@ -76,17 +77,23 @@ function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], t
     options: {
       scales: {
         y: {
-
           min: 0,
           type: 'linear',
           grace: '5%'
         },
         x:{
+          parsing: false,
+          type: 'time',
+            time: {
+                unit: periodo_linha(linha),
+            },
+                
           ticks: {
+            source: 'data',
             //aling: 'center',
             //crossAlign:'far',
             //z: 100,
-            //labelOffset: 100,
+            //labelOffset: 10,
             //padding: 0,
             //crossAlign: 'center',
             //padding: 200,
@@ -95,9 +102,15 @@ function dados_linha (titulo, linha, coluna1 = [], coluna2 = [], coluna3 = [], t
             maxRotation: 0,
           }
         }
+      },
+      plugins:{
+        datalabels:{
+          anchor: 'end',
+          align: 'top',
+        }
       }
-    }
-
+    },
+    plugins: type == "bar" ? [ChartDataLabels] : ""
   });
 }
 
@@ -125,4 +138,23 @@ function carceter_especial(titulo){
   if (element == 'Tensão')
     element = 'Tensao'
   return titulo, element;
+}
+
+function periodo_linha (linha){
+  let temp = Math.abs(temp_dia(linha[0])  - temp_dia(linha[linha.length - 1]))
+
+  if(temp < 1)
+    return 'hour'
+  else if(temp <= 7)
+    return 'day'
+  else if(temp <= 31)
+    return 'week'
+  else if (temp <= 366)
+    return 'month'
+  else
+    return 'year'
+}
+
+function temp_dia(tempo){
+  return new Date(tempo)/(3600*24)/1000
 }

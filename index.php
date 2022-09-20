@@ -5,9 +5,12 @@
       <title>Listar  com JS </title>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>         
+      <script src="https://cdn.jsdelivr.net/npm/chart.js/dist/chart.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
       <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
       <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
       <script src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.1.0/chartjs-plugin-datalabels.min.js" integrity="sha512-Tfw6etYMUhL4RTki37niav99C6OHwMDB2iBT5S5piyHO+ltK2YX8Hjy9TXxhE1Gm/TmAV0uaykSpnHKFIAif/A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script src="./_js/calendario.js"></script>
       <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" />
       <link rel="stylesheet" href="_css/grafico_linha.css"/> 
@@ -88,7 +91,7 @@
           //total = "Total: " + integral( json.coluna1, json.tempo).toFixed(2) + " UND"
           graf = periodo(json)
           console.log(graf)
-          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kW/h";
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kw/h";
           dados_linha("Ativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
           </script>
 
@@ -102,7 +105,7 @@
           var json = JSON.parse('<?=$json?>')
           graf = periodo(json)
           console.log(graf)
-          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kW/h";
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kw/h";
           dados_linha("Reativa", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
         </script>
 
@@ -116,7 +119,7 @@
           var json = JSON.parse('<?=$json?>')
           graf = periodo(json)
           console.log(graf)
-          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kW/h";
+          total = "Total: " + integral(json.coluna1, json.tempo).toFixed(2) + " kw/h";
           dados_linha("Aparente", graf[1], graf[0], json['coluna2'], json['coluna3'], graf[2], total)
         </script>
 

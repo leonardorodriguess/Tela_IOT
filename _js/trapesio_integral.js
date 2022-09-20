@@ -55,7 +55,7 @@ function periodo(obj){
 
             //agrupar de acordo com o periodo
             if(Math.abs(ini - fim) != 0){
-                area[k] = integral(coluna[k], tempo[k])
+                area[k] = integral(coluna[k], tempo[k]).toFixed(2)
                 t[k] = tempo[k][0];
 
                 k +=1;
@@ -69,7 +69,7 @@ function periodo(obj){
             
         }
         t[k] = tempo[k][dia[0]];
-        area[k] = integral(coluna[k], tempo[k])
+        area[k] = integral(coluna[k], tempo[k]).toFixed(2)
         
 
         return [area, t, 'bar'];
